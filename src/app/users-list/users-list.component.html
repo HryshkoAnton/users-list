@@ -1,5 +1,8 @@
 <mat-selection-list #users>
-    <mat-list-option *ngFor="let user of usersList">
+    <mat-list-option 
+        *ngFor="let user of usersList; index as i"
+        [ngClass]="{gray: i%2}"
+    >
         <span>{{ user.username }}</span>
         <span>{{ user.name }}</span>
     </mat-list-option>
