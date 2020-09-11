@@ -1,8 +1,26 @@
+<div class="flex">
+    <mat-form-field appearance="outline">
+        <mat-label>Sorting Users</mat-label>
+        <mat-select #list (selectionChange)="sort(list.value)">
+            <mat-option value="0">
+                from A to Z
+            </mat-option>
+            <mat-option value="1">
+                from Z to A
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Search</mat-label>
+        <input matInput placeholder="Search" #input (keyup.enter)="search(input.value)">
+        <mat-icon matSuffix (click)="search(input.value)">search</mat-icon>
+    </mat-form-field>
+</div>
+
+
 <mat-selection-list #users>
-    <mat-list-option 
-        *ngFor="let user of usersList; index as i"
-        [ngClass]="{gray: i%2}"
-    >
+    <mat-list-option *ngFor="let user of usersList; index as i" [ngClass]="{gray: i%2}">
         <span>{{ user.username }}</span>
         <span>{{ user.name }}</span>
     </mat-list-option>

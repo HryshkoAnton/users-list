@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersListComponent implements OnInit {
   public usersList: User[];
-
+  searchText;
   constructor(private usersService: UsersService) { }
 
   ngOnInit(): void {
@@ -18,7 +18,15 @@ export class UsersListComponent implements OnInit {
   }
 
   getAllUsers(): void {
-    this.usersService.getUsers().subscribe(data => this.usersList = data);
+    this.usersList = this.usersService.getUsers();
+  }
+
+  search(query): void {
+    this.usersList = this.usersService.findUser(query);
+  }
+
+  sort(direction): void {
+    this.usersList = this.usersService.sortUsers(direction);
   }
 
 }
