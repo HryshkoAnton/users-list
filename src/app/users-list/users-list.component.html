@@ -13,16 +13,19 @@
 
     <mat-form-field appearance="outline">
         <mat-label>Search</mat-label>
-        <input matInput placeholder="Search" #input (keyup.enter)="search(input.value)">
+        <input matInput placeholder="Search" #input (input)="search(input.value)">
         <mat-icon matSuffix (click)="search(input.value)">search</mat-icon>
     </mat-form-field>
 </div>
 
 
 <mat-selection-list #users>
-    <mat-list-option *ngFor="let user of usersList; index as i" [ngClass]="{gray: i%2}">
-        <span>{{ user.username }}</span>
-        <span>{{ user.name }}</span>
+    <mat-list-option *ngFor="let user of usersList; index as i" [ngClass]="{gray: i%2, flex: true}">
+        <div class="flex">
+            <span>{{ user.username }}</span>
+            <span>{{ user.name }}</span>
+            <span>{{ user.role }}</span>
+        </div>
     </mat-list-option>
 </mat-selection-list>
 

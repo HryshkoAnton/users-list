@@ -15,18 +15,19 @@ export class UsersListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllUsers();
+    this.usersService.getUsersObserv().subscribe(data => this.usersList = data);
   }
 
   getAllUsers(): void {
-    this.usersList = this.usersService.getUsers();
+    this.usersService.getUsers().subscribe(data => this.usersList = data);
   }
 
   search(query): void {
-    this.usersList = this.usersService.findUser(query);
+    this.usersService.filterItem(query);
   }
 
   sort(direction): void {
-    this.usersList = this.usersService.sortUsers(direction);
+    this.usersService.sortUsers(direction);
   }
 
 }
