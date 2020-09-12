@@ -37,6 +37,13 @@ export class UsersListComponent implements OnInit {
 
   addUser(): void {
     this.usersService.addUser(this.name, this.username, this.role);
+    this.clearForm();
+  }
+
+  clearForm(): void {
+    this.name = '';
+    this.username = '';
+    this.role = '';
   }
 
   deleteSelectedUsers(arr): void {

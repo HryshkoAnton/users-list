@@ -48,28 +48,36 @@
 
 </div>
 
-<mat-selection-list #users>
-    <mat-list-option *ngFor="let user of usersList; index as i" 
-                    [ngClass]="{gray: i%2, flex: true}"
-                    [value]="user"
-                    >
-        <div class="flex">
-            <span>{{ user.name }}</span>
-            <span>{{ user.username }}</span>
-            <span>{{ user.role }}</span>
+<div *ngIf="usersList.length>0; else noUsers">
+    <mat-selection-list #users>
+        <mat-list-option *ngFor="let user of usersList; index as i" 
+                        [ngClass]="{gray: i%2, flex: true}"
+                        [value]="user"
+                        >
+            <div class="flex">
+                <span>{{ user.name }}</span>
+                <span>{{ user.username }}</span>
+                <span>{{ user.role }}</span>
+            </div>
+        </mat-list-option>
+    </mat-selection-list>
+    
+    <div class="flex">
+        <div>
+            <p>
+                Options selected: {{ users.selectedOptions.selected.length }}
+            </p>
         </div>
-    </mat-list-option>
-</mat-selection-list>
-
-<div class="flex">
-    <div>
-        <p>
-            Options selected: {{ users.selectedOptions.selected.length }}
-        </p>
-    </div>
-
-    <div class="example-button-row">
-        <button mat-raised-button color="warn" (click)="deleteSelectedUsers(users.selectedOptions.selected)">Delete</button>
+    
+        <div class="example-button-row">
+            <button mat-raised-button color="warn" (click)="deleteSelectedUsers(users.selectedOptions.selected)">Delete</button>
+        </div>
     </div>
 </div>
 
+
+<ng-template #noUsers>
+    <h2>
+        No users found
+    </h2>
+</ng-template>
