@@ -61,4 +61,11 @@ export class UsersService {
     this.subjUsers.next(this.usersList);
   }
 
+  deleteUsers(arr): void {
+    arr.map(element => {
+      this.usersList = this.usersList.filter(user => user.id !== element.value.id);
+    });
+    this.subjUsers.next(this.usersList);
+  }
+
 }

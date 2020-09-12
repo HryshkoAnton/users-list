@@ -39,4 +39,8 @@ export class UsersListComponent implements OnInit {
     this.usersService.addUser(this.name, this.username, this.role);
   }
 
+  deleteSelectedUsers(arr): void {
+    this.usersService.deleteUsers(arr);
+  }
+
 }

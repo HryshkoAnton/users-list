@@ -49,7 +49,10 @@
 </div>
 
 <mat-selection-list #users>
-    <mat-list-option *ngFor="let user of usersList; index as i" [ngClass]="{gray: i%2, flex: true}">
+    <mat-list-option *ngFor="let user of usersList; index as i" 
+                    [ngClass]="{gray: i%2, flex: true}"
+                    [value]="user"
+                    >
         <div class="flex">
             <span>{{ user.name }}</span>
             <span>{{ user.username }}</span>
@@ -58,6 +61,15 @@
     </mat-list-option>
 </mat-selection-list>
 
-<p>
-    Options selected: {{ users.selectedOptions.selected.length }}
-</p>
+<div class="flex">
+    <div>
+        <p>
+            Options selected: {{ users.selectedOptions.selected.length }}
+        </p>
+    </div>
+
+    <div class="example-button-row">
+        <button mat-raised-button color="warn" (click)="deleteSelectedUsers(users.selectedOptions.selected)">Delete</button>
+    </div>
+</div>
+
