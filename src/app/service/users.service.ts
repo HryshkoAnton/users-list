@@ -12,8 +12,8 @@ export class UsersService {
   usersList: User[] = usersList;
   private subjUsers = new Subject();
   filteredItems: User[];
-  constructor() { }
 
+  constructor() { }
 
   getUsers(): Observable<User[]> {
     return of(this.usersList);
@@ -46,6 +46,19 @@ export class UsersService {
       item => item.name.toLowerCase().indexOf(value.toLowerCase()) > -1
     )];
     this.subjUsers.next(this.filteredItems);
+  }
+
+  addUser(name, username, role): void {
+    this.usersList = [
+      ...this.usersList,
+      {
+        id: Date.now(),
+        name,
+        username,
+        role: role === '0' ? 'User' : 'Admin'
+      }
+    ];
+    this.subjUsers.next(this.usersList);
   }
 
 }

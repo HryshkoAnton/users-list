@@ -1,3 +1,4 @@
+import { usersList } from './../mock-users/users';
 import { UsersService } from './../service/users.service';
 import { User } from './../models/user';
 import { Component, OnInit } from '@angular/core';
@@ -11,6 +12,10 @@ import { Component, OnInit } from '@angular/core';
 export class UsersListComponent implements OnInit {
   public usersList: User[];
   searchText;
+  name: string;
+  username: string;
+  role: string;
+
   constructor(private usersService: UsersService) { }
 
   ngOnInit(): void {
@@ -28,6 +33,10 @@ export class UsersListComponent implements OnInit {
 
   sort(direction): void {
     this.usersService.sortUsers(direction);
+  }
+
+  addUser(): void {
+    this.usersService.addUser(this.name, this.username, this.role);
   }
 
 }
